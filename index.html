@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Network Device Automation</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        textarea {
+            width: 80%;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Network Device Automation</h1>
+
+    {% if connected %}
+        <p>Connected to device!</p>
+    {% else %}
+        <p>Not connected to device!</p>
+        <form method="post" action="/connect">
+            <button type="submit">Connect to Device</button>
+        </form>
+    {% endif %}
+
+    <form method="post">
+        <label for="user_input">Enter Command:</label><br>
+        <textarea id="user_input" name="user_input"></textarea><br>
+        <button type="submit">Execute</button>
+    </form>
+    {% if connected %}
+      <form method="post" action="/disconnect">
+          <button type="submit">Disconnect from Device</button>
+      </form>
+    {% endif %}
+
+    <h2>Output:</h2>
+    <pre>{{ output }}</pre>  {# Preserve formatting #}
+
+</body>
+</html>
